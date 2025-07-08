@@ -23,7 +23,7 @@ class DataTransformation:
     
     def get_data_transformation_object(self):
         '''
-        this function is resposible about data transfor=rmation 
+        this function is resposible about data transforrmation 
         '''
         try:
             numerical_columns = ["writing score", "reading score"]
@@ -35,7 +35,7 @@ class DataTransformation:
                     ("scaler", StandardScaler(with_mean=False))
                 ]
             )
-            logging.info("numerical columns encoding completed")
+            logging.info("numerical columns feature engineering completed")
 
             cat_pipeline=Pipeline(
                 steps=[
@@ -44,7 +44,7 @@ class DataTransformation:
                     ("scaler", StandardScaler(with_mean=False))
                 ]
             )
-            logging.info("categorical columns encoding completed")
+            logging.info("categorical columns feature engineering completed")
 
 
             preprocessor=ColumnTransformer(
@@ -59,7 +59,6 @@ class DataTransformation:
             raise CustomException(e, sys)
         
     def initiate_data_transformation(self, train_path, test_path):
-
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
@@ -89,8 +88,8 @@ class DataTransformation:
             test_arr = np.c_[
                 input_feature_test_arr, np.array(target_feature_test_df)
             ]
-
             logging.info("Preprocessing object Saved.")
+        
         
             save_object(
                 file_path = self.data_transformation_config.preprocessor_ob_file_path,
